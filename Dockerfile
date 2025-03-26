@@ -17,9 +17,14 @@ RUN pnpm deploy --filter=@imput/cobalt-api --prod /prod/api
 FROM base AS api
 WORKDIR /app
 
+# Set default port for Render
+ENV PORT=10000
+# Set listen address to 0.0.0.0 for Render
+ENV API_LISTEN_ADDRESS=0.0.0.0
+
 COPY --from=build --chown=node:node /prod/api /app
 
 USER node
 
-EXPOSE 9000
+EXPOSE ${PORT}
 CMD [ "node", "src/cobalt" ]
