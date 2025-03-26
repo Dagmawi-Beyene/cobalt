@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: cobalt-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: API_URL
+        value: https://cobalt-api-factory.onrender.com
+      - key: API_PORT
+        value: 9000
+      - key: API_LISTEN_ADDRESS
+        value: 0.0.0.0
+      - key: CORS_WILDCARD
+        value: 1
+    healthCheckPath: /
+    autoDeploy: true
+    plan: free
